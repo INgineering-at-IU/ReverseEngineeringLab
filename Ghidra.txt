@@ -1,0 +1,275 @@
+1. What Ghidra is (in one sentence)
+
+Ghidra is a free program from the NSA that lets you take apart compiled programs (like .exe files) to see what they do. It’s a reverse-engineering toolbox. 
+Wikipedia
+
+To run it, you need two main things:
+
+Java (JDK) – the “engine” Ghidra runs on
+
+Ghidra itself – the reverse-engineering app
+
+2. Install Java (JDK)
+
+Ghidra requires a 64-bit Java Development Kit (JDK)—currently JDK 21 is what the official docs recommend. 
+GitHub
+
+Step 2.1: Download JDK
+
+Open your browser and search for: Temurin JDK 21 (or go to the official Adoptium/Oracle JDK 21 page).
+
+Download the Windows x64 .msi installer for JDK 21.
+
+If there’s a choice between JRE and JDK: pick JDK.
+
+Step 2.2: Run the installer
+
+Double-click the jdk-21-...-windows-x64.msi file.
+
+Click Next through the wizard.
+
+Keep the defaults unless you know what you’re doing.
+
+Make sure any option like “Set JAVA_HOME” or “Add to PATH” is enabled if offered.
+
+Finish the install.
+
+You now have Java; Ghidra will refuse to run without this.
+
+3. Download Ghidra
+
+The official Ghidra site is: 
+ghidra.net
+
+Website: https://ghidra-sre.org → this links you to the official GitHub releases.
+
+Step 3.1: Go to the releases page
+
+On the Ghidra website, click the link to GitHub Releases or similar.
+
+You’ll end up on a page like:
+https://github.com/NationalSecurityAgency/ghidra/releases 
+GitHub
+
+Step 3.2: Choose the correct file
+
+On the latest release:
+
+Look for a file named like:
+
+ghidra_11.4.2_PUBLIC_20250827.zip
+
+
+(The version and date will change over time.)
+
+Important:
+
+You want the big .zip file with PUBLIC in the name.
+
+Do NOT download the ones called “Source code (zip)” or “Source code (tar.gz)” – those are for developers, not for running Ghidra. 
+GitHub
+
+Click that .zip file and let it download.
+
+4. “Installing” Ghidra (really just unzipping)
+
+Ghidra doesn’t have a classic installer; you unzip it and run it.
+
+Step 4.1: Choose a permanent folder
+
+Pick a place you want Ghidra to live, for example:
+
+C:\Tools\Ghidra\
+
+or C:\Users\<yourname>\Programs\Ghidra\
+
+Try not to keep it in Downloads forever, because you’ll forget where it is.
+
+Step 4.2: Extract the ZIP
+
+Right-click the Ghidra .zip file you downloaded.
+
+Click “Extract All…”.
+
+Choose your folder (e.g. C:\Tools\Ghidra\).
+
+Click Extract.
+
+After extraction you’ll have a folder like:
+
+C:\Tools\Ghidra\ghidra_11.4.2_PUBLIC\
+
+
+Inside that folder you’ll see things like:
+
+ghidraRun.bat
+
+Ghidra\ (subfolder)
+
+docs\
+
+support\
+
+etc.
+
+That’s the whole “installation.” No registry magic or anything.
+
+5. Running Ghidra for the first time
+Step 5.1: Start it the easy way (double-click)
+
+Go into your Ghidra folder:
+
+C:\Tools\Ghidra\ghidra_11.4.2_PUBLIC\
+
+Double-click ghidraRun.bat.
+
+If Java is installed correctly, a command window may flash and then Ghidra’s GUI will appear after a bit.
+
+If nothing happens or you get a Java error, we’ll fix that in a second.
+
+Step 5.2: If you want a Desktop shortcut (recommended)
+
+Right-click ghidraRun.bat.
+
+Click Send to → Desktop (create shortcut).
+
+On your desktop, rename the shortcut to “Ghidra”.
+
+Now you can just double-click the shortcut like any other app.
+
+6. First-time setup inside Ghidra
+
+When Ghidra opens the first time, it’ll walk you through some basic stuff:
+
+6.1: Accept the license
+
+A window will pop up with a license.
+
+Scroll down and click Accept.
+
+6.2: Choose a Ghidra projects folder
+
+This is where Ghidra will store all your reverse-engineering projects.
+
+It might suggest a default path like
+C:\Users\<you>\ghidra_projects.
+
+You can accept that or browse to a folder you make, e.g.
+C:\Users\<you>\Documents\GhidraProjects\.
+
+Click OK.
+
+You’ll then see the Project Manager window (a blank main window with a left panel for projects).
+
+7. Creating your first project and opening a binary
+
+This is the “hello world” of reverse engineering.
+
+7.1: Make a new project
+
+In the Project Manager, click File → New Project.
+
+Choose Non-Shared Project (this means “just me, on this machine”).
+
+Pick a project folder/name, e.g.:
+
+Name: easyRE_lab
+
+Click Finish.
+
+Your new project appears in the left tree.
+
+7.2: Import a file (the .exe you want to analyze)
+
+In the Project Manager, choose File → Import File…
+
+Browse to a binary:
+
+For a lab, they might give you something like easyRE.exe or similar.
+
+Select it and click Open.
+
+You’ll see an Import dialog:
+
+It’ll auto-detect the file type (e.g. PE (Portable Executable) for Windows .exe).
+
+Usually you can just leave all the options alone at first.
+
+Click OK.
+
+The file will now show up under your project in the left panel.
+
+7.3: Open the file in CodeBrowser
+
+Double-click your imported file in the left panel.
+
+Ghidra will ask if you want to Analyze it now.
+
+Check “Analyze this” (it’s usually checked already) and click OK.
+
+Ghidra will think for a bit; then you’ll see:
+
+Central code view: disassembly and/or decompiled C-like code.
+
+Left: symbol tree, functions, etc.
+
+Top right: listing, decompiler window, etc.
+
+Congrats, Ghidra is installed and you’re actually reverse-engineering something 🎉
+
+8. Common problems & fixes (Windows beginner edition)
+Problem 1: ghidraRun.bat opens a black window and closes instantly
+
+Most likely:
+
+Java/JDK isn’t installed
+or
+
+It’s installed but not 64-bit
+or
+
+Ghidra can’t find it in your PATH.
+
+Fix:
+Reinstall a 64-bit JDK 21, and make sure:
+
+You choose the Windows x64 version.
+
+Optionally, reinstall and in the JDK installer check “Set JAVA_HOME / Add to PATH” if it appears.
+
+Problem 2: Ghidra complains about Java version
+
+If you see a popup about “wrong Java version,” make sure you’re using a version Ghidra supports (currently JDK 21 is recommended). 
+GitHub
++1
+
+If you have multiple Javas installed (like JDK 8 + JDK 21), Ghidra might pick the wrong one; in that case you can:
+
+Uninstall the older JDK/JRE via Add or Remove Programs,
+or
+
+Edit ghidraRun.bat to point explicitly at the right Java, but if you’re “no idea what I’m doing” level, uninstalling the old one is easier.
+
+9. Very quick “what you’re looking at” once Ghidra is open
+
+Just so the windows don’t feel totally alien:
+
+Project Manager – where you manage different reverse-engineering projects and binaries.
+
+CodeBrowser – the main window with:
+
+Listing: assembly instructions (left).
+
+Decompiler: C-like pseudocode (usually on the right) – this is what you’ll mostly read.
+
+Symbol Tree: functions, labels, etc., on the left side.
+
+Console/Log: messages from Ghidra at the bottom.
+
+For a simple lab where you’re just learning to “navigate pseudo-C,” your instructor will usually have you:
+
+Open the decompiler window.
+
+Click different functions in the left tree.
+
+Read the pseudocode and figure out what the program does or what the “password” is.
