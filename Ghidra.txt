@@ -1,3 +1,8 @@
+https://github.com/ytisf/GhidraMacOS
+FOR MAC USERS
+
+
+
 1. What Ghidra is (in one sentence)
 
 Ghidra is a free program from the NSA that lets you take apart compiled programs (like .exe files) to see what they do. It’s a reverse-engineering toolbox. 
