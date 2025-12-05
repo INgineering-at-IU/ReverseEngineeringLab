@@ -1,6 +1,6 @@
 https://github.com/ytisf/GhidraMacOS
 FOR MAC USERS
-
+chmod +x "/Applications/Ghidra.app/Contents/Resources/ghidra/Ghidra/Features/Decompiler/os/mac_arm_64/decompile"
 
 
 1. What Ghidra is (in one sentence)
